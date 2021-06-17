@@ -1,29 +1,40 @@
-import axios from "axios";
-const baseUrl = "http://localhost:5000/notes";
+import axios from 'axios'
+const baseUrl = '/api/notes'
+
+let token = null
+
+const setToken = (newToken) => {
+  token = `bearer ${newToken}`
+}
 
 const getAll = () => {
   return axios.get(baseUrl).then((response) => {
-    const notes = response.data;
+    const notes = response.data
     const sampleNote = {
-      content: "this will cause error",
+      content: 'this will cause error',
       id: 500,
       date: new Date().toISOString(),
       important: true,
-    };
+    }
 
-    return notes.concat(sampleNote);
-  });
-};
+    return notes.concat(sampleNote)
+  })
+}
 
-const create = (newObject) => {
-  return axios.post(baseUrl, newObject).then((response) => response.data);
-};
+const create = async (newObject) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  const response = await axios.post(baseUrl, newObject, config)
+  return response.data
+}
 
 const update = (id, newObject) => {
   return axios
     .put(`${baseUrl}/${id}`, newObject)
-    .then((response) => response.data);
-};
+    .then((response) => response.data)
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { getAll, create, update };
+export default { getAll, create, update, setToken }
