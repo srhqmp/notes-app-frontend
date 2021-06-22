@@ -116,7 +116,7 @@ const App = () => {
           notes.map((note) => (note.id.toString() === id ? updatedNote : note))
         )
       })
-      .catch((error) => {
+      .catch(() => {
         const errMessage = `note "${noteToChange.content}" was deleted from server`
         setErrorMessage(errMessage)
         setTimeout(() => setErrorMessage(null), 5000)

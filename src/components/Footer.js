@@ -1,9 +1,10 @@
+/* eslint-disable react/react-in-jsx-scope */
 const Footer = () => {
   const footerStyle = {
-    color: "green",
-    fontStyle: "italic",
+    color: 'green',
+    fontStyle: 'italic',
     fontSize: 16,
-  };
+  }
   return (
     <div style={footerStyle}>
       <br />
@@ -13,7 +14,7 @@ const Footer = () => {
       <br />
       @srhqmp
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
